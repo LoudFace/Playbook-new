@@ -51,6 +51,19 @@ export const pieValueExtract = function (nameOfField: string, records: Records<F
   return value;
 };
 
+export const pieValueExtractPercent = function (
+  nameOfField: string,
+  records: Records<FieldSet>
+): number {
+  const [value] = records
+    .map((record) => record.get(nameOfField))
+    .filter((rec) => rec !== undefined)
+
+    .slice(-3);
+
+  return value;
+};
+
 // const [overallData] = records
 //   .map((record) => record.get('Overall Score'))
 //   .filter((rec) => rec !== undefined)

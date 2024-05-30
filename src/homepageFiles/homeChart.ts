@@ -1,10 +1,5 @@
 import Airtable, { type FieldSet, type Records } from 'airtable';
 import {
-  plotLineChart,
-  plotLineChart3DataPoint,
-  plotPieChart,
-} from 'src/chartFunction/chartFunction';
-import {
   getColumnData,
   getColumnNumberData,
   getColumnWoWDataFormated,
@@ -13,15 +8,7 @@ import {
   pieValueExtract,
 } from 'src/helperFunction';
 
-// interface IntersectionObserverEntry {
-//   time: number;
-//   target: Element;
-//   rootBounds: DOMRectReadOnly | null;
-//   boundingClientRect: DOMRectReadOnly;
-//   intersectionRect: DOMRectReadOnly;
-//   isIntersecting: boolean;
-//   intersectionRatio: number;
-// }
+import { plotLineChart, plotLineChart3DataPoint, plotPieChart } from '../chartFunction';
 
 const airtableToken =
   'patdwE10W5YOIwOla.4a633223c06422d5a54fdcc94b427170221e267365c08a0e0f9a894cffad3904';
@@ -30,7 +17,7 @@ Airtable.configure({ apiKey: airtableToken });
 
 const baseInstance = new Airtable().base('appRQPFdsg8bGEHBO');
 
-const getTableRecord = function (tableId: string) {
+export const getTableRecord = function (tableId: string) {
   return baseInstance(tableId).select({
     view: 'Grid view',
   });
@@ -143,7 +130,7 @@ export const onlineChart = async function () {
     };
 
     const options = {
-      threshold: 0.6,
+      threshold: 0.5,
     };
     const newObserve = new IntersectionObserver(pieintoView, options);
     newObserve.observe(downloadSection);
@@ -154,14 +141,6 @@ export const onlineChart = async function () {
 
   getTableRecord(imageQualityTableID).eachPage(function page(records: Records<FieldSet>) {
     console.log(records);
-
-    // const [overallData] = records
-    //   .map((record) => record.get('Image Quality: Overall Score'))
-    //   .filter((rec) => rec !== undefined)
-    //   .map((rec) => rec * 100)
-    //   .slice(-1);
-
-    // console.log(overallData);
 
     const overallScoreValue = pieValueExtract('Image Quality: Overall Score', records);
     const overallScoreValueSecond = pieSecondValue(overallScoreValue);
@@ -194,7 +173,7 @@ export const onlineChart = async function () {
     };
 
     const options = {
-      threshold: 0.6,
+      threshold: 0.4,
     };
     const newObserve = new IntersectionObserver(pieintoView, options);
     newObserve.observe(imageQualitySection);
