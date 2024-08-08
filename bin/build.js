@@ -11,6 +11,13 @@ const ENTRY_POINTS = [
   'src/index.ts',
   'src/homepageFiles/homeMain.ts',
   'src/imageQuality/imageQualityChart.ts',
+  'src/me-online/me-chart.ts',
+  'src/annual-achievement.ts',
+  'src/radissonReward/rewardUi.ts',
+  'src/digitalMonthlyResult/digitalMonthly.ts',
+  'src/roadMap/roadmap.ts',
+  'src/appPage/app.ts',
+  'src/appPage/appCountryPerf.ts',
 ];
 
 // Config dev serving

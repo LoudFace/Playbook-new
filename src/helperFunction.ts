@@ -1,6 +1,55 @@
 import type { FieldSet, Records } from 'airtable';
 import { dataTool } from 'echarts';
 
+export function roundToFiveDecimalPlaces(number: number) {
+  return Number(number.toFixed(5));
+}
+
+export const FormatMillion = function (x) {
+  return x / 1000000;
+};
+
+// export function numberWithCommas(x) {
+//   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+// }
+////scrolling Y axis
+///////////////FUnctiont that fix the y-axis .
+export const fixYaxis = function (scrollCont: HTMLElement, yAxisContainer: HTMLElement) {
+  scrollCont.scrollBy(scrollCont.scrollWidth, 0);
+
+  scrollCont.addEventListener('scroll', function () {
+    const pxScrolled = scrollCont.scrollLeft;
+
+    if (pxScrolled > yAxisContainer.scrollWidth) {
+      yAxisContainer.classList.add('scroll-y');
+      // yAxisContainer.style.backgroundColor = color;
+    } else {
+      yAxisContainer.classList.remove('scroll-y');
+      //yAxisContainer.style.backgroundColor = 'transparent';
+    }
+  });
+};
+
+export const fixYaxisLeftToRight = function (scrollCont: HTMLElement, yAxisContainer: HTMLElement) {
+  //scrollCont.scrollBy(scrollCont.scrollWidth, 0);
+
+  scrollCont.addEventListener('scroll', function () {
+    const pxScrolled = scrollCont.scrollLeft;
+
+    if (pxScrolled > yAxisContainer.scrollWidth) {
+      yAxisContainer.classList.add('scroll-y');
+      // yAxisContainer.style.backgroundColor = color;
+    } else {
+      yAxisContainer.classList.remove('scroll-y');
+      //yAxisContainer.style.backgroundColor = 'transparent';
+    }
+  });
+};
+
+export function isMobile() {
+  return window.innerWidth < 479;
+}
+
 ///Helpers function
 export const getColumnNumberData = function (
   nameOfField: string,
@@ -10,12 +59,16 @@ export const getColumnNumberData = function (
   return rawValue.map((value: number) => Math.floor(value * 100));
 };
 
+export const changeToPercent = function (x: any) {
+  return Number(x * 100).toFixed(1);
+};
+
 export const getColumnData = function (nameOfField: string, records: Records<FieldSet>) {
   return records.map((rec) => rec.get(nameOfField));
 };
 
 /// formated column data with percent and change NaN and infinity to Zero
-export const formatColumnsTOPercent = function (arr: any): number[] {
+export const formatColumnsToPercent = function (arr: any): number[] {
   const formatedArr = arr
     .map((el: any) => {
       if (typeof el === 'object' || typeof el === 'undefined') el = 0;
@@ -29,10 +82,10 @@ export const formatColumnsTOPercent = function (arr: any): number[] {
 
 export const getColumnWoWDataFormated = function (nameOfField: string, records: Records<FieldSet>) {
   const xArray = records.map((rec) => rec.get(nameOfField));
-  return formatColumnsTOPercent(xArray);
+  return formatColumnsToPercent(xArray);
 };
 
-export function numberWithCommas(x: number): string {
+export function numberWithCommas(x: any): string {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
@@ -43,10 +96,10 @@ export const pieSecondValue = function (x: number): number {
 
 export const pieValueExtract = function (nameOfField: string, records: Records<FieldSet>): number {
   const [value] = records
-    .map((record) => record.get(nameOfField))
-    .filter((rec) => rec !== undefined)
-    .map((rec: any) => Math.floor(rec * 100))
-    .slice(-3);
+    .map((record) => <number>record.get(nameOfField))
+    .filter((rec) => rec !== undefined);
+  // .map((rec: any) => Math.floor(rec));
+  //.slice(-3);
 
   return value;
 };
