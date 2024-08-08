@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../bin/live-reload.js", "../../src/imageQualityScore/imageQualityChart.ts"],
+  "sourcesContent": ["new EventSource(`${SERVE_ORIGIN}/esbuild`).addEventListener('change', () => location.reload());\n", "// import {\n//   plotLineChart,\n//   plotLineChart3DataPoint,\n//   plotPieChart,\n// } from 'src/chartFunction/chartFunction';\n\nwindow.Webflow ||= [];\nwindow.Webflow.push(() => {\n  console.log('iage');\n});\n"],
+  "mappings": ";;;AAAA,MAAI,YAAY,GAAG,iCAAsB,EAAE,iBAAiB,UAAU,MAAM,SAAS,OAAO,CAAC;;;ACM7F,SAAO,YAAY,CAAC;AACpB,SAAO,QAAQ,KAAK,MAAM;AACxB,YAAQ,IAAI,MAAM;AAAA,EACpB,CAAC;",
+  "names": []
+}

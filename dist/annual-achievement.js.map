@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../bin/live-reload.js", "../src/annual-achievement.ts"],
+  "sourcesContent": ["new EventSource(`${SERVE_ORIGIN}/esbuild`).addEventListener('change', () => location.reload());\n", "window.Webflow ||= [];\nwindow.Webflow.push(() => {\n  const imgUrlBtn = document.querySelectorAll('[img-url]');\n  const imgEl = document.querySelector('[img-tab]') as HTMLImageElement;\n\n  imgUrlBtn.forEach((imgbtn) => {\n    imgbtn.addEventListener('click', (e) => {\n      imgUrlBtn.forEach((el) => {\n        //remove active state from other element\n        if (el !== imgbtn) {\n          el.classList.remove('active');\n        }\n      });\n      //set active state on btn\n      imgbtn.classList.add('active');\n      //get the link attr\n      const imgLink = imgbtn.getAttribute('img-url') as string;\n      imgEl.src = imgLink;\n    });\n  });\n});\n"],
+  "mappings": ";;;AAAA,MAAI,YAAY,GAAG,iCAAsB,EAAE,iBAAiB,UAAU,MAAM,SAAS,OAAO,CAAC;;;ACA7F,SAAO,YAAY,CAAC;AACpB,SAAO,QAAQ,KAAK,MAAM;AACxB,UAAM,YAAY,SAAS,iBAAiB,WAAW;AACvD,UAAM,QAAQ,SAAS,cAAc,WAAW;AAEhD,cAAU,QAAQ,CAAC,WAAW;AAC5B,aAAO,iBAAiB,SAAS,CAAC,MAAM;AACtC,kBAAU,QAAQ,CAAC,OAAO;AAExB,cAAI,OAAO,QAAQ;AACjB,eAAG,UAAU,OAAO,QAAQ;AAAA,UAC9B;AAAA,QACF,CAAC;AAED,eAAO,UAAU,IAAI,QAAQ;AAE7B,cAAM,UAAU,OAAO,aAAa,SAAS;AAC7C,cAAM,MAAM;AAAA,MACd,CAAC;AAAA,IACH,CAAC;AAAA,EACH,CAAC;",
+  "names": []
+}

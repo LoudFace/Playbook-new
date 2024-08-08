@@ -1,0 +1,1 @@
+"use strict";(()=>{window.Webflow||(window.Webflow=[]);window.Webflow.push(()=>{let t=document.querySelectorAll("[img-url]"),i=document.querySelector("[img-tab]");t.forEach(e=>{e.addEventListener("click",o=>{t.forEach(c=>{c!==e&&c.classList.remove("active")}),e.classList.add("active");let s=e.getAttribute("img-url");i.src=s})})});})();
