@@ -167,15 +167,15 @@ export const appReviews = function () {
 
     const and_html = `<div><span class="${andYoYRating > 0 ? 'green' : 'red'}">+${getRoundedNum(
       andYoYRating
-    )}% </span>uplift vs June 23</div>`;
+    )}% </span>difference vs previous year</div>`;
 
     const ios_html = `<div><span class="${iosYoYRating > 0 ? 'green' : 'red'}">+${getRoundedNum(
       iosYoYRating
-    )}% </span>uplift vs June 23</div>`;
+    )}% </span>difference vs previous year</div>`;
 
     const com_html = `<div><span class="${comYoYRating > 0 ? 'green' : 'red'}">+${getRoundedNum(
       comYoYRating
-    )}% </span>uplift vs June 23</div>`;
+    )}% </span>difference vs previous year</div>`;
 
     andAll_values.textContent = `${andRating}`;
     andUpliftWrap.insertAdjacentHTML('beforeend', and_html);
